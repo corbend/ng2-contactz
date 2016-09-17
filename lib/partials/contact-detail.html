@@ -1,0 +1,77 @@
+<div class="panel panel-info">
+    <div class="panel-heading clearfix">
+        <h5 class="pull-left" style="width: 50%;">{{title}}</h5>
+    </div>
+    <div class="panel-body"> 
+        <div [hidden]="submitted">
+            <div class="col-xs-6">
+                <form *ngIf="active" (ngSubmit)="onSubmit()" #f="ngForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" name="fullName" #fullname="ngModel" id="fullName" placeholder="Full Name" [(ngModel)]="item.fullName" class="form-control" required>
+                        <div [hidden]="fullname.valid || fullname.pristine" class="help-block alert alert-danger">
+                              required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>    
+                        <input type="text" name="phone" #phone="ngModel" placeholder="Phone" [(ngModel)]="item.phone" class="form-control" required>
+                        <div [hidden]="phone.valid || phone.pristine" class="help-block alert alert-danger">
+                              required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" #email="ngModel" placeholder="Email" [(ngModel)]="item.email" class="form-control" required>
+                        <div [hidden]="email.valid || email.pristine" class="help-block alert alert-danger">
+                              required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea name="address" #address="ngModel" placeholder="Address" [(ngModel)]="item.address" class="form-control" required></textarea>
+                        <div [hidden]="address.valid || address.pristine" class="help-block alert alert-danger">
+                              required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="group">Group</label>
+                        <select name="group" #group="ngModel" placeholder="Group" [(ngModel)]="item.group" class="form-control" required>
+                            <option value="" selected>-</option>
+                            <option [value]="g._id" *ngFor="let g of groups">
+                                {{g.name}}
+                            </option>
+                        </select>
+                        <div [hidden]="group.valid || group.pristine" class="help-block alert alert-danger">
+                              required
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-default" (click)="onCancel($event)">Cancel</button>
+                        <button type="submit" [disabled]="!f.form.valid" class="btn btn-success">Update</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xs-6">
+                <form class="form-horizontal">
+                    <div class="form-group" style="height: 415px;">
+                        <label>Photo Image</label>
+                        <div *ngIf="item.photoUrl">
+                            <img class="user-photo" [src]="item.photoUrl">
+                        </div>
+                        <div *ngIf="!item.photoUrl">
+                            <img src="..." class="img-thumbnail user-photo">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="userPhoto">Upload Photo</label>
+                        <input type="file" name="userPhoto" ng2FileSelect [uploader]="uploader" />
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success" (click)="onUploadPhoto($event)">Upload</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

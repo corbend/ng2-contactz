@@ -1,0 +1,140 @@
+<div class="row">
+	<div class="col-xs-6">
+		<h4 style="padding: 0; margin: 0;">Your personal page {{user.firstName}} {{user.lastName}}</h4>
+	</div>
+	<div class="col-xs-6">
+		<div *ngIf="user.isVerified">
+			<label class="label label-lg label-success">Account is verified</label>
+		</div>
+		<div *ngIf="!user.isVerified">
+			<label class="label label-lg label-danger">Account is not verified</label>
+			<button class="btn btn-primary">
+				Send Email
+			</button>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-6">
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h5>Change user data</h5>
+			</div>
+			<div class="panel-body">
+				<form #profileForm="ngForm" class="form-horizontal" (ngSubmit)="changeProfile($event, profileForm)" novalidate>
+					<div class="form-group">
+						<label class="col-xs-2 control-label">Email</label>						
+						<div class="col-xs-6">
+							<input name="email" #email="ngModel" class="form-control" ngControl="email" placeholder="Email" [(ngModel)] = "user.email"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-2 control-label">Phone</label>
+						<div class="col-xs-6">
+							<input name="phone" #phone="ngModel" class="form-control" ngControl="phone" placeholder="Phone" [(ngModel)] = "user.phone"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-2 control-label">First Name</label>
+						<div class="col-xs-6">
+							<input name="firstName" #firstName="ngModel" class="form-control" ngControl="firstName" placeholder="First Name" [(ngModel)] = "user.firstName"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-2 control-label">Last Name</label>
+						<div class="col-xs-6">
+							<input name="lastName" #lastName="ngModel" class="form-control" ngControl="lastName" placeholder="Last Name" [(ngModel)] = "user.lastName"/>
+						</div>
+					</div>			
+					<div class="form-group">
+						<div class="col-xs-6 col-xs-offset-2">
+							<button type="submit" class="btn btn-primary">Accept</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="panel panel-warning">
+			<div class="panel-heading">
+				<h5>Change password</h5>
+			</div>
+			<div class="panel-body">
+				<form class="form-horizontal" (ngSubmit)="changePassword(newPassword)" >
+					<div class="form-group">
+						<div class="col-xs-6">
+							<input name="prev" #prev="ngModel" class="form-control" placeholder="Previous password" [(ngModel)] = "newPassword.old"/>
+						</div>
+						<div class="col-xs-6">
+							<input name="newp" #newp="ngModel" class="form-control" placeholder="New password" [(ngModel)] = "newPassword.new"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-6 col-xs-3-offset">
+							<button type="submit" class="btn btn-primary">Change</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="panel panel-danger">
+			<div class="panel-heading">
+				<h5>Delete profile</h5>
+			</div>
+			<div class="panel-body">			
+				<form class="form-horizontal" (ngSubmit)="deleteProfile(user)">
+					<div class="form-group">
+						<div class="col-xs-6">
+							<input name="login" #login="ngModel" class="form-control" placeholder="Enter your login" [(ngModel)] = "deletedProfile.name"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-6 col-xs-3-offset">
+							<button type="submit" class="btn btn-primary">Accept</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-6">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h5>Load an avatar</h5>
+			</div>
+			<div class="panel-body">
+				<form class="form-horizontal" (ngSubmit)="setPreviewAvatar()">
+					<div class="form-group">
+						<div class="col-xs-3 col-xs-3-offset">
+							<button type="button" class="btn btn-primary crop-apply-btn">Apply</button>
+						</div>
+						<div class="col-xs-3 col-xs-3-offset preview-container">
+							<img class="preview-image">
+						</div>
+						<div class="image-transition-icon col-xs-2">
+							<i class="glyphicon glyphicon-arrow-right"></i>
+						</div>
+						<div class="col-xs-3 col-xs-3-offset">
+							<img style="width: 65px;" class="user-image" [attr.src]="'/avatars/' + user._id + '.png'">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<input type="file" #avatar="ngModel" [(ngModel)]="encodedAvatar" encoded (onEncoded)="onEncode($event)" (onUrlChange)="onPreviewUrlChange($event)" name="avatar" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12">
+							<img class="hidden-img" cropped 
+							[srcUrl]="previewUrl"
+							(cropApply)="cropApply($event)">
+						</div>
+					</div>
+					<div class="form-group">
+						<div style="padding: 0" class="col-xs-12 cropper-container">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

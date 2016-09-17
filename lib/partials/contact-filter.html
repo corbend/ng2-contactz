@@ -1,0 +1,52 @@
+<div class="panel panel-primary" style="position: absoluter; bottom: 0;">
+	<div class="panel-heading">
+		<h6 style="margin: 0">Filters</h6>
+	</div>
+	<div class="panel-body">
+		<div class="navbar" style="margin-bottom: 0px;">
+			<button class="btn btn-primary" (click)="createFilter()">Create</button>
+			<button class="btn" [ngClass]="{'btn-default': !isFiltered, 'btn-warning': isFiltered}" (click)="applyFilters()">{{!isFiltered ? 'Apply' : 'Unapply'}}</button>
+			<button class="btn btn-info" (click)="clearFilters()">Clear</button>
+		</div>
+		<table class="table table-condensed table-bordered">
+			<thead>
+				<tr>
+					<th>Field</th>
+					<th>Type</th>
+					<th>Value</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let f of filters">
+					<td *ngIf="f.isNew" class="filter-block">
+						<select class="form-control" type="text" [(ngModel)]="f.field">
+							<option *ngFor="let opt of fields">{{opt}}</option>
+						</select>
+					</td>
+					<td *ngIf="f.isNew" class="filter-block">
+						<select class="form-control" type="text" [(ngModel)]="f.type">
+							<option *ngFor="let opt of types">{{opt}}</option>
+						</select>
+					</td>
+					<td *ngIf="f.isNew" class="filter-block">
+						<input class="form-control" [(ngModel)]="f.value">
+					</td>
+
+					<td *ngIf="!f.isNew" class="filter-block">{{f.field}}</td>
+					<td *ngIf="!f.isNew" class="filter-block">{{f.type}}</td>
+					<td *ngIf="!f.isNew" class="filter-block">{{f.value}}</td>
+
+					<td class="filter-block">
+						<button *ngIf="f.isNew" class="btn btn-warning" (click)="addFilter(f)">
+						Add</button>
+						<a *ngIf="!f.isNew" (click)="editFilter(f)">
+							<i class="glyphicon glyphicon-pencil"></i></a>
+						<a *ngIf="!f.isNew" (click)="removeFilter(f)">
+							<i class="glyphicon glyphicon-remove-sign"></i></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

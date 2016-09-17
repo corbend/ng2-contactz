@@ -1,0 +1,5 @@
+{
+	"dbName": "feeder",
+	"secret": "my-top-secret",
+	"userFilesDir": "/home/alexn/projects/js/ng2-contacts-list/images"
+}

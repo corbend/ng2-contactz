@@ -1,0 +1,10 @@
+{
+	"globalDependencies": {
+		"core-js": "registry:dt/core-js#0.0.0+20160602141332",
+		"cropperjs": "registry:dt/cropperjs#0.0.0+20160724062638",
+		"jquery": "registry:dt/jquery#1.10.0+20160704162008",
+		"node": "registry:dt/node#6.0.0+20160621231320",
+		"reflect-metadata": "registry:dt/reflect-metadata#0.1.3",
+		"webpack": "registry:dt/webpack#1.12.9+20160523035535"
+	}
+}

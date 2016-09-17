@@ -1,0 +1,57 @@
+<div class="panel panel-info">
+    <div class="panel-heading clearfix">
+        <h5 class="pull-left" style="width: 50%;">{{title}}</h5>
+    </div>
+    <div class="panel-body">    
+    <div [hidden]="submitted" style="position: relative; height: 772px;">
+        <form (ngSubmit)="onSubmit()" #f="ngForm">
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" name="fullName" #fullname="ngModel" style="width: 50%" id="fullName" placeholder="Full Name" [(ngModel)]="newItem.fullName" class="form-control" required>
+                <div [hidden]="fullname.valid || fullname.pristine" class="help-block alert alert-danger">
+                      required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>    
+                <input type="text" name="phone" #phone="ngModel" style="width: 50%" placeholder="Phone" [(ngModel)]="newItem.phone" class="form-control" required>
+                <div [hidden]="phone.valid || phone.pristine" class="help-block alert alert-danger">
+                      required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" name="email" #email="ngModel" style="width: 50%" placeholder="Email" [(ngModel)]="newItem.email" class="form-control" required>
+                <div [hidden]="email.valid || email.pristine" class="help-block alert alert-danger">
+                      required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <textarea name="address" #address="ngModel" style="width: 50%" placeholder="Address" [(ngModel)]="newItem.address" class="form-control" required></textarea>
+                <div [hidden]="address.valid || address.pristine" class="help-block alert alert-danger">
+                    required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="group">Group</label>
+                <select name="group" #group="ngModel" style="width: 50%" placeholder="Group" [(ngModel)]="newItem.group" class="form-control" required>
+                    <option value="" selected>-</option>
+                    <option [value]="g._id" *ngFor="let g of groups">
+                        {{g.name}}
+                    </option>
+                </select>
+                <div [hidden]="group.valid || group.pristine" class="help-block alert alert-danger">
+                    required
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-6">
+                    <button class="btn btn-default" (click)="onCancel($event)">Cancel</button>
+                    <button type="submit" [disabled]="!f.form.valid" class="btn btn-success">Accept</button>
+                </div>
+            </div>
+        </form>        
+    </div>
+    </div>
+</div>

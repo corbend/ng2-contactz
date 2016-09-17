@@ -1,0 +1,10 @@
+<li class="list-group-item" [mnHighlight]="'#ccc'" (onHover)="onHover($event)" (onLeave)="onUnhover($event)">
+    <span *ngIf="!rename"><i *ngIf="selected" class="glyphicon glyphicon-filter"></i>{{item.name}}</span>
+    <span *ngIf="rename"></span>
+    <span [hidden]="!editable" class="pull-right" *ngIf="hovered">
+        <i style="cursor: pointer;" class="glyphicon glyphicon-pencil" (click)="onEdit($event)"></i>
+    </span>
+    <span [hidden]="!editable" class="pull-right" *ngIf="hovered">
+        <i style="cursor: pointer;" class="glyphicon glyphicon-remove-sign" (click)="onRemove($event)"></i>
+    </span>
+</li>

@@ -1,0 +1,39 @@
+<div class="panel panel-info">
+    <div class="panel-heading clearfix">
+        <h5 class="pull-left" style="width: 50%;">{{title}}</h5>
+    </div>
+    <div class="panel-body">
+    <div class="col-xs-6" style="position: relative; height: 772px;">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label>Provider</label>
+                <select class="form-control" name="provider" [(ngModel)]="form.provider">
+                    <option [value]="item" *ngFor="let item of providers">
+                        {{item}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Select File</label>
+                <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+            </div>
+            <div class="form-group">
+                <button class="btn btn-info" (click)="preview()">
+                    Check
+                </button>
+                <button class="btn btn-primary" (click)="importFile()">
+                    Import
+                </button>
+            </div>
+            <div class="form-group">
+                <ul class="list-group fields-list">
+                    <li *ngFor="let item of exportFields">
+                        <input [value]="true" type="checkbox" ([ngModel])="form.fields[item]"/>
+                        <label style="width: 200px;">{{item}}</label>
+                    </li>                    
+                </ul>
+            </div>
+        </form>
+    </div>
+    </div>
+</div>

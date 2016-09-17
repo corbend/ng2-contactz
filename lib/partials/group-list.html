@@ -1,0 +1,39 @@
+<div class="panel panel-info" style="border-top-left-radius: 0px; border-top-right-radius: 0px;">      
+	<div class="panel-body" style="padding: 15px 0px; position: relative; height: 740px;">
+        <div class="container-fluid">
+            <div class="row">
+                <div *ngIf="!createShow" class="col-xs-12" style="margin-bottom: 15px;">
+                    <h5 style="margin: 4px 0px;" class="pull-left">Groups</h5>
+                    <button class="btn btn-success pull-right" (click)="onCreateShow()">Create</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <form *ngIf="createShow" class="form-inline">
+                        <input name="name" class="form-control" [(ngModel)]="newGroup.name" />
+                        <button class="btn btn-warning" (click)="create(newGroup)">Save</button>
+                        <button class="btn btn-default" (click)="onCancelSave($event)">Cancel</button>
+                    </form>
+                    <form *ngIf="editShow" class="form-inline edit-form">
+                        <input name="name" class="form-control" [(ngModel)]="editGroup.name" />
+                        <button class="btn btn-warning" (click)="update(editGroup)">Save</button>
+                        <button class="btn btn-default" (click)="onCancelUpdate($event)">Cancel</button>
+                    </form>
+                    <div style="position: relative; height: 680px;">
+            		    <ul *ngIf="items.length > 0" [style.top]="(createShow && '20px') || '0'" class="list-group" style="position: absolute; top: 0px; left: 0; right: 0; bottom: 0; overflow-y: auto;">
+    	            	    <mn-group-list-item [selected]="selectedItem==item" 
+                            (editItem)="onEditShow($event)" (changedItem)="onChangeItem($event)" (click)="onSelect($event, item)" [item]="item" *ngFor="let item of items">
+                		    </mn-group-list-item>
+            		    </ul>
+                    </div>
+                    <label *ngIf="items.length == 0 && !createShow" style="font-size: 2em;" class="label label-info">
+                        Groups not found
+                    </label>
+                </div>
+            </div>
+        </div>
+	</div>
+	<div class="panel-footer">
+        <mn-search-field [delay]="500" (onSearch)="search($event)"></mn-search-field>
+	</div>
+</div>

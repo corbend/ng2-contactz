@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="user-data info ttable">
+                <div class="trow">
+                    <div class="img-cell tcell">
+                        <img [attr.src]="'/avatars/' + loggedUser._id + '.png'"/>
+                    </div>
+                    <div class="name-cell tcell">
+                        <h5>{{loggedUser.fullName}}</h5>
+                    </div>
+                </div>
+            </div>
+            <mn-group-list></mn-group-list>
+        </div>
+        <div class="col-xs-9">
+            <mn-bootstrap-nav [routes]="routes" [navs]="navs"></mn-bootstrap-nav>
+            <router-outlet></router-outlet>
+        </div>
+    </div>            
+</div>

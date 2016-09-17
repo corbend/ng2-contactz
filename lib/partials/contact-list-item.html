@@ -1,0 +1,18 @@
+<td class="text-center">
+    <input type="checkbox" [(ngModel)]="selectedItem">
+</td>
+<td>
+    {{item.fullName}}
+</td>
+<td>
+    {{item.phone}}
+</td>
+<td>
+    {{item.email}}
+</td>
+<td>
+    {{item.address}}
+</td>
+<td>
+    <a [routerLink]="editRoute">Edit Contact</a>
+</td>

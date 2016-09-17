@@ -1,0 +1,5 @@
+<ul style="margin: 16px 20px 0 0px;" class="pull-right nav nav-pills navs-justified">
+    <li *ngFor="let nv of navs" role="presentation" [routerLinkActive]="['active']">
+    	<a [routerLink]="nv.url">{{nv.title}}</a>
+    </li>    
+</ul>

@@ -1,0 +1,87 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		Register
+	</div>
+	<div class="panel-body">
+		<form #f="ngForm" name="registerForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+			<div class="form-group">
+				<div class="col-xs-3 control-label">			
+				</div>
+				<div class="col-xs-9">
+					<span>All fields required</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-3 control-label">
+					<label>First Name</label><span class="asterix"></span>
+				</div>
+				<div class="col-xs-9">
+					<input name="first_name" #first_name="ngModel" class="form-control" type="text" [(ngModel)]="registerInfo.firstName" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-3 control-label">
+					<label>Last Name</label><span class="asterix"></span>
+				</div>
+				<div class="col-xs-9">
+					<input name="last_name" #last_name="ngModel" class="form-control" type="text" [(ngModel)]="registerInfo.lastName" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-3 control-label">
+					<label>Email</label><span class="asterix"></span>
+				</div>
+				<div class="col-xs-9">
+					<input name="email" #email="ngModel" class="form-control" type="text" [(ngModel)]="registerInfo.email" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-3 control-label">
+					<label>Phone</label><span class="asterix"></span>
+				</div>
+				<div class="col-xs-9">
+					<input name="phone" #phone="ngModel" class="form-control" type="text" [(ngModel)]="registerInfo.phone" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-3 control-label">
+					<label>Organization</label><span class="asterix"></span>
+				</div>
+				<div class="col-xs-9">
+					<input name="organization" #organization="ngModel" class="form-control" type="text" [(ngModel)]="registerInfo.organization" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-3 control-label">
+					<label>Nickname/Login</label><span class="asterix"></span>
+				</div>
+				<div class="col-xs-9">
+					<input name="login" #login="ngModel" class="form-control" type="text" [(ngModel)]="registerInfo.login" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-3 control-label">
+					<label>Password</label><span class="asterix"></span>
+				</div>
+				<div class="col-xs-9">
+					<input name="password" #password="ngModel" class="form-control" type="text" [(ngModel)]="registerInfo.password" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-3 control-label">
+					<label>Confirm</label><span class="asterix"></span>
+				</div>
+				<div class="col-xs-9">
+					<input name="confirm" #confirm="ngModel" class="form-control" type="text" [(ngModel)]="registerInfo.confirm" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-xs-3">
+					<button [disabled] = "!f.form.valid" style="width: 100%;" type="submit" class="btn btn-primary">
+						Accept
+					</button>
+				</div>		
+			</div>
+		</form>
+	</div>
+</div>
