@@ -33,7 +33,6 @@ export class CroppedImage {
 	}
 	onCrop(e) {
 		var data = e.detail;
-		console.log("cropping", data);
 	}
 	imageToBlob(type="image/png", quality=1): Blob {
 		let canvas = this.cropper.getCroppedCanvas();
@@ -60,11 +59,6 @@ export class CroppedImage {
 			$wizard.attr('src', url);
 			let $$wizardEl = $wizard.eq(0)[0];
 			$container.append($wizard);
-			// this.$previewContainer.children().remove();
-			// this.$previewContainer[0].appendChild(this.$previewImage);
-			// this.$previewContainer.style.width = 100 + "px";
-			// this.$previewImage.style.height = 100 + "px";
-   //      	this.$previewImage.style.width = 100 + "px";
 			setTimeout(() => {
 				this.cropper = new cropperjs($$wizardEl, {
 					aspectRatio: 3/4,
